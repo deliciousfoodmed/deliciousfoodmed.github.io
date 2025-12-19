@@ -21,7 +21,7 @@ body {
 .hero-fullscreen {
     height: 100vh;
     width: 100%;
-    background-image: linear-gradient(var(--amarillo),var(--negro));
+    /* background-image: linear-gradient(var(--amarillo),var(--negro)); */
     background-image: url('img/background.jpg');
     background-size: cover;
     background-position: center;
@@ -39,8 +39,7 @@ body {
 .overlay-dark {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.1);
-    pointer-events: none; /* Mejora el scroll ignorando toques en la capa oscura */
+    background-image: linear-gradient(#00000000,#00000065);
 }
 
 .hero-content {
@@ -49,8 +48,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* Aceleración de hardware */
-    transform: translate3d(0,0,0);
 }
 
 .big-logo {
@@ -58,28 +55,24 @@ body {
     height: auto; /* Importante para que no recalcule dimensiones */
     margin-bottom: 20px;
     border-radius: 50%;
-    
-    /* OPTIMIZACIÓN: Quitamos el 'filter: drop-shadow' pesado. 
-       Si quieres sombra, usa esta que es más ligera (box-shadow): */
-    box-shadow: 0 0 20px rgb(255, 217, 0); 
-    
-    /* Evita parpadeos en móviles */
-    backface-visibility: hidden;
+    box-shadow: 0 0 20px rgb(170, 142, 0); 
 }
 
 .brand-title {
     font-size: 2.5rem;
     font-weight: 900;
     letter-spacing: 2px;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6)
 }
 .yellow-text { color: var(--amarillo); }
 
 .brand-subtitle {
     margin-top: 10px;
-    font-size: 1rem;
+    font-size: 1.1rem;
     letter-spacing: 3px;
-    color: #ccc;
+    color: #ffffff;
     text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8)
 }
 
 /* Animación del Logo */
@@ -176,6 +169,15 @@ body {
     flex-direction: row;
 }
 
+.jugos-item{
+    background-color: var(--blanco);
+    border-radius: 15px;
+    width: 60%;
+    padding: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 5px 0;
+}
+
 /* Marco para fotos (cuadro gris) */
 .photo-frame {
     width: 35%;
@@ -200,7 +202,7 @@ body {
     display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     background-color: #eee;
     color: #999;
-    content: "📷 FOTO";
+    content: "Cargando...";
     font-size: 0.8rem; font-weight: bold;
     display: flex; align-items: center; justify-content: center;
 }
@@ -229,7 +231,7 @@ body {
 /* Botón Flotante */
 .whatsapp-float {
     position: fixed; bottom: 8px; left: 50%; transform: translateX(-50%);
-    background: #25d366; color: white; padding: 8px 20px; border-radius: 50px;
+    background: #25d366; color: white; padding: 5px 15px; border-radius: 40px;
     text-decoration: none; font-weight: 800; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     display: flex; align-items: center; gap: 10px; z-index: 2000; white-space: nowrap;
 }
