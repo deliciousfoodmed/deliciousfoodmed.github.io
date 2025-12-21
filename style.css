@@ -116,12 +116,14 @@ body {
     text-decoration: none;
     color: var(--negro);
     font-weight: 600;
-    font-size: 0.85rem;
-    padding: 8px 20px;
+    padding: 0px 10px 7px 10px;
     border-radius: 50px;
     background: transparent;
     border: 1px solid transparent;
     transition: all 0.3s ease;
+    text-align: center;
+    gap: 5px; /* Espacio entre el emoji y el texto */
+    font-size: 0.8rem; /* Un toquecito más grande para que el emoji luzca */
 }
 
 .nav-item.active {
