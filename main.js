@@ -1,103 +1,105 @@
+/* main.js OPTIMIZADO */
 document.addEventListener('DOMContentLoaded', () => {
+    // --- 1. LÓGICA DE NAVEGACIÓN (SCROLL SPY) ---
     const navLinks = document.querySelectorAll('.nav-item');
     const sections = document.querySelectorAll('section');
+    const navScrollContainer = document.querySelector('.nav-scroll');
+    
+    let lastId = ''; // Variable para recordar la última sección activa
 
     window.addEventListener('scroll', () => {
         let current = '';
+        
+        // Detectar en qué sección estamos
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
-            // 200px de margen para detectar bien la sección al bajar
-            if (scrollY >= (sectionTop - 200)) {
+            const sectionHeight = section.clientHeight;
+            // Ajustamos el margen de detección (150px antes de llegar)
+            if (scrollY >= (sectionTop - 150)) {
                 current = section.getAttribute('id');
             }
         });
 
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href').includes(current)) {
-                link.classList.add('active');
-                link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-            }
-        });
-    });
-});
+        // Solo hacemos cambios si la sección ha cambiado (ESTO MEJORA EL RENDIMIENTO)
+        if (current !== lastId) {
+            lastId = current;
 
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Función que pone el logo (Fallback)
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                // Buscamos el link que corresponde a la sección actual
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                    
+                    // Mover el menú horizontalmente de forma suave
+                    // Usamos un cálculo simple en lugar de scrollIntoView para evitar saltos
+                    const linkRect = link.getBoundingClientRect();
+                    const containerRect = navScrollContainer.getBoundingClientRect();
+                    
+                    // Si el link está fuera de vista, lo movemos
+                    if (linkRect.left < containerRect.left || linkRect.right > containerRect.right) {
+                        link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                    }
+                }
+            });
+        }
+    });
+
+    // --- 2. MANEJO DE IMÁGENES ROTAS (LOGO FALLBACK) ---
     const ponerLogo = (img) => {
         img.src = 'img/logo.jpg'; 
         img.style.objectFit = 'contain';
         img.style.padding = '20px';
         img.style.backgroundColor = '#fff';
-        img.onerror = null; // Evita bucles infinitos
+        img.onerror = null;
     };
 
-    // 2. Seleccionamos todas las imágenes
     const images = document.querySelectorAll('img');
-
     images.forEach(img => {
-        // Caso A: El error ocurre en el futuro (mientras navegas)
         img.onerror = () => ponerLogo(img);
-
-        // Caso B: El error YA ocurrió antes de cargar el script (¡Este es tu problema!)
-        // Si la imagen "completó" su carga pero no tiene ancho natural, está rota.
         if (img.complete && img.naturalHeight === 0) {
             ponerLogo(img);
         }
     });
-});
 
-/* --- LÓGICA DEL MODAL DE PRODUCTO --- */
-document.addEventListener('DOMContentLoaded', () => {
+    // --- 3. MODAL DE PRODUCTO ---
     const modal = document.getElementById('product-modal');
-    const modalImg = document.getElementById('modal-img');
-    const modalTitle = document.getElementById('modal-title');
-    const modalDesc = document.getElementById('modal-desc');
-    const modalPrice = document.getElementById('modal-price');
-    const modalWs = document.getElementById('modal-whatsapp');
-    const closeModalBtn = document.querySelector('.close-modal');
+    // Solo ejecutamos esto si el modal existe en el HTML
+    if (modal) {
+        const modalImg = document.getElementById('modal-img');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDesc = document.getElementById('modal-desc');
+        const modalPrice = document.getElementById('modal-price');
+        const modalWs = document.getElementById('modal-whatsapp');
+        const closeModalBtn = document.querySelector('.close-modal');
+        const cards = document.querySelectorAll('.product-card');
 
-    // Seleccionar todas las tarjetas de producto
-    const cards = document.querySelectorAll('.product-card');
+        cards.forEach(card => {
+            card.style.cursor = 'pointer';
+            card.addEventListener('click', (e) => {
+                // Evitamos abrir si tocan un botón dentro de la tarjeta
+                if(e.target.closest('button') || e.target.closest('a')) return;
 
-    cards.forEach(card => {
-        // Hacemos que el cursor sea una mano para indicar click
-        card.style.cursor = 'pointer';
+                const imgSrc = card.querySelector('img')?.src || 'img/logo.jpg';
+                const title = card.querySelector('h3')?.textContent || 'Producto';
+                const desc = card.querySelector('.desc')?.textContent || '';
+                const price = card.querySelector('.price')?.textContent || '';
 
-        card.addEventListener('click', () => {
-            // 1. Extraer datos de la tarjeta clickeada
-            // Usamos optional chaining (?) por si algún elemento no existe
-            const imgSrc = card.querySelector('img')?.src || 'img/logo.jpg';
-            const title = card.querySelector('h3')?.textContent || 'Producto';
-            const desc = card.querySelector('.desc')?.textContent || '';
-            const price = card.querySelector('.price')?.textContent || '';
+                if(modalImg) modalImg.src = imgSrc;
+                if(modalTitle) modalTitle.textContent = title;
+                if(modalDesc) modalDesc.textContent = desc;
+                if(modalPrice) modalPrice.textContent = price;
 
-            // 2. Llenar el modal con los datos
-            modalImg.src = imgSrc;
-            modalTitle.textContent = title;
-            modalDesc.textContent = desc;
-            modalPrice.textContent = price;
+                const mensaje = `Hola, me gustaría pedir: ${title}`;
+                if(modalWs) modalWs.href = `https://wa.me/573027569197?text=${encodeURIComponent(mensaje)}`;
 
-            // 3. Crear enlace de WhatsApp personalizado
-            const mensaje = `Hola, me gustaría pedir: ${title}`;
-            // Reemplaza el número '573027569197' con el tuyo si es diferente
-            modalWs.href = `https://wa.me/573027569197?text=${encodeURIComponent(mensaje)}`;
-
-            // 4. Mostrar el modal
-            modal.classList.add('active');
+                modal.classList.add('active');
+            });
         });
-    });
 
-    // Función para cerrar modal
-    const cerrarModal = () => {
-        modal.classList.remove('active');
-    };
-
-    // Cerrar con la X
-    closeModalBtn.addEventListener('click', cerrarModal);
-
-    // Cerrar si tocan fuera de la tarjeta (el fondo oscuro)
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) cerrarModal();
-    });
+        const cerrarModal = () => modal.classList.remove('active');
+        if(closeModalBtn) closeModalBtn.addEventListener('click', cerrarModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) cerrarModal();
+        });
+    }
 });
