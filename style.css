@@ -14,16 +14,19 @@
 
 html, body {
     max-width: 100%;
+    overflow-x: hidden;
     position: relative; /* Ayuda a contener elementos absolutos */
 }
 
 body {
+    width: 100%;
+    max-width: 100vw; /* Asegura que el cuerpo no exceda la vista */
+    overflow-x: hidden; /* Doble seguridad */
     background-color: var(--gris-fondo);
     padding-top: 0;
     padding-bottom: 80px;
-    overflow-x: hidden; 
     position: relative;
-    width: 100%;
+    margin: 0;
 }
 
 .hero-fullscreen {
@@ -32,7 +35,7 @@ body {
     
     /* El resto de tu configuración de imagen... */
     width: 100%;
-    background-image: url('img/fondo-burger.jpg');
+    background-image: url('img/fondo-burger.png');
     background-size: cover;
     background-position: center 70px; /* Tu ajuste de posición */
     display: flex;
