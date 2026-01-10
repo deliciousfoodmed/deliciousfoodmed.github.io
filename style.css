@@ -39,7 +39,7 @@ body {
     width: 100%;
     max-width: 100vw;
     overflow-x: hidden;
-    background-image: url('img/fondo-burger.png');
+    background-image: url('img/fondo-burger.webp');
     background-size: cover;
     background-position: center 70px; /* Tu ajuste de posición */
     display: flex;
@@ -524,7 +524,7 @@ transform: scale(1.05);
     width: 100%; height: 100%;
     background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(5px); /* Efecto borroso elegante */
-    z-index: 3000;
+    z-index: 10001;
     display: flex;
     justify-content: center;
     align-items: center;

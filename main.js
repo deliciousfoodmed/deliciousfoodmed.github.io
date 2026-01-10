@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const ponerLogo = (img) => {
         img.src = 'img/logo.jpg'; 
         img.style.objectFit = 'contain';
-        img.style.padding = '20px';
+        img.style.padding = '8px';
         img.style.backgroundColor = '#fff';
         img.onerror = null;
     };
