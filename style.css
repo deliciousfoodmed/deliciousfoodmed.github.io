@@ -12,9 +12,15 @@
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
 
 
+html, body {
+    max-width: 100%;
+    overflow-x: hidden; /* Esto bloquea el movimiento lateral */
+    position: relative; /* Ayuda a contener elementos absolutos */
+}
+
 body {
     background-color: var(--gris-fondo);
-    padding-top: 0; /* Sin padding porque la intro es pantalla completa */
+    padding-top: 0;
     padding-bottom: 80px;
 }
 
@@ -23,7 +29,12 @@ body {
     width: 100%;
     background-image: url('img/fondo-burger.png');
     background-size: cover;
-    background-position: center 0%; 
+    
+    /* CAMBIO CLAVE: 'center top' o 'center 0%' */
+    /* Esto alinea la parte SUPERIOR de la foto con el borde SUPERIOR de la pantalla. */
+    /* Resultado: Se ve más el fondo vacío de arriba y la hamburguesa baja. */
+    background-position: center top; 
+    
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
