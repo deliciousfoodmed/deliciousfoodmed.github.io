@@ -14,19 +14,21 @@
 
 html {
     width: 100%;
-    overflow-x: hidden; /* Mantenemos el bloqueo aquí */
-    scroll-behavior: smooth; /* Suaviza el scroll al navegar */
+    /* La magia: 'hidden' aquí corta lo que sobra horizontalmente */
+    overflow-x: hidden; 
+    scroll-behavior: smooth;
 }
 
 body {
     width: 100%;
-    /* Quitamos max-width y overflow-x de aquí para liberar el 'sticky' */
+    /* IMPORTANTE: 'visible' permite que el menú sepa cuándo pegarse */
+    overflow-x: visible; 
     background-color: var(--gris-fondo);
     padding-top: 0;
     padding-bottom: 80px;
     position: relative;
-    margin: 0;
-    /* overflow-x: clip; <--- Opcional: Solo si usas navegadores muy modernos, pero mejor dejarlo sin nada por ahora */
+    /* Aseguramos que nada dentro del body force el ancho */
+    max-width: 100vw;
 }
 
 .hero-fullscreen {
@@ -35,6 +37,8 @@ body {
     
     /* El resto de tu configuración de imagen... */
     width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
     background-image: url('img/fondo-burger.png');
     background-size: cover;
     background-position: center 70px; /* Tu ajuste de posición */
@@ -130,15 +134,14 @@ body {
 
 /* --- 2. NAVEGACIÓN STICKY (SE PEGA ARRIBA) --- */
 .app-nav {
-    position: sticky; 
+    position: sticky; /* Se pega al llegar arriba */
     top: 0;
+    width: 100%; /* Ocupa todo el ancho */
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
-    z-index: 1000; /* Aseguramos que esté por encima de todo */
+    z-index: 9999; /* Un número muy alto para estar siempre encima */
     box-shadow: 0 4px 20px rgba(0,0,0,0.05);
     padding: 15px 0;
-    border-bottom: none;
-    transition: top 0.3s; /* Suaviza la llegada */
 }
 
 .nav-scroll {
