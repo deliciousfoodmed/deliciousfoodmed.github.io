@@ -81,13 +81,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Limpiar imagen anterior (Pantalla blanca momentánea)
                 if (modalImg) modalImg.src = ''; 
 
-                if (item.classList.contains('drink-item')) {
+                // Lógica visual (Foto vs Ícono)
+                // MODIFICADO: Ahora incluye 'flavor-tag' en la condición
+                if (item.classList.contains('drink-item') || item.classList.contains('flavor-tag')) {
+                    
+                    // Ocultamos la etiqueta de imagen normal
                     if(modalImg) modalImg.style.display = 'none';
+                    
+                    // Mostramos el contenedor del ícono gigante
                     if(modalIcon) {
                         modalIcon.style.display = 'flex';
-                        modalIcon.className = item.querySelector('i')?.className || 'fas fa-cocktail';
+                        
+                        // Buscamos si el elemento ya tiene un ícono adentro (ej. Cervezas o Milo con su estrella)
+                        const existingIcon = item.querySelector('i');
+                        
+                        if (existingIcon) {
+                             // Si tiene ícono, usamos ese mismo
+                             modalIcon.className = existingIcon.className;
+                        } else {
+                             // Si NO tiene ícono (ej. Mora, Mango), usamos un vaso de jugo genérico
+                             // Puedes cambiar 'fas fa-glass-whiskey' por otro que te guste de FontAwesome
+                             modalIcon.className = 'fas fa-glass-whiskey'; 
+                        }
                     }
                 } else {
+                    // Lógica para Hamburguesas, Pizzas, etc. (Se mantiene igual)
                     if(modalIcon) modalIcon.style.display = 'none';
                     if(modalImg) {
                         modalImg.style.display = 'block';
