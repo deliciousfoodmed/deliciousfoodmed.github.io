@@ -1,6 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- 0. PRE-CARGAR IMÁGENES ---
+    // --- 0. FIX PARA IPHONE (Habilita el efecto de toque) ---
+    // Esta línea es OBLIGATORIA para que el CSS :active funcione en iOS
+    document.body.addEventListener('touchstart', function() {}, {passive: true}); 
+
+    // --- 1. PRE-CARGAR IMÁGENES ---
     const preloadImages = () => {
         const images = document.querySelectorAll('.product-card img');
         images.forEach(img => {
@@ -10,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     preloadImages(); 
 
-    // --- 1. LÓGICA DE NAVEGACIÓN (SCROLL SPY) ---
+    // --- 2. LÓGICA DE NAVEGACIÓN (SCROLL SPY) ---
     const navLinks = document.querySelectorAll('.nav-item');
     const sections = document.querySelectorAll('section');
     const navScrollContainer = document.querySelector('.nav-scroll');
@@ -45,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     window.addEventListener('scroll', onScroll);
 
-    // --- 2. MANEJO DE IMÁGENES ROTAS ---
+    // --- 3. MANEJO DE IMÁGENES ROTAS ---
     const ponerLogo = (img) => {
         img.src = 'img/logo.jpg'; 
         img.style.objectFit = 'contain';
@@ -58,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (img.complete && img.naturalHeight === 0) ponerLogo(img);
     });
 
-    // --- 3. MODAL DE PRODUCTO ---
+    // --- 4. MODAL DE PRODUCTO ---
     const modal = document.getElementById('product-modal');
     if (modal) {
         const clickableItems = document.querySelectorAll('.product-card, .pizza-card, .drink-item, .flavor-tag, .mini-card, .reference-card');
@@ -73,6 +77,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const modalIcon = document.getElementById('modal-icon');
                 const modalTitle = document.getElementById('modal-title');
                 const modalDesc = document.getElementById('modal-desc');
+
+                // Limpiar imagen anterior (Pantalla blanca momentánea)
+                if (modalImg) modalImg.src = ''; 
 
                 if (item.classList.contains('drink-item')) {
                     if(modalImg) modalImg.style.display = 'none';
@@ -150,4 +157,4 @@ document.addEventListener('DOMContentLoaded', () => {
         if(closeModalBtn) closeModalBtn.addEventListener('click', cerrarModal);
         modal.addEventListener('click', (e) => { if (e.target === modal) cerrarModal(); });
     }
-})
+});

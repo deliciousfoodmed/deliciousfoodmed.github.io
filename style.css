@@ -565,11 +565,66 @@ body {
 /* =========================================
    9. ELEMENTOS FLOTANTES Y UTILIDADES
    ========================================= */
+
+/* --- BOTÓN WHATSAPP FLOTANTE REDISEÑADO --- */
 .whatsapp-float {
-    position: fixed; bottom: 8px; left: 50%; transform: translateX(-50%);
-    background: #25d366; color: white; padding: 5px 15px; border-radius: 40px;
-    text-decoration: none; font-weight: 800; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    display: flex; align-items: center; gap: 10px; z-index: 2000; white-space: nowrap;
+    position: fixed;
+    bottom: 10px;       /* Un poco más separado del borde inferior */
+    right: 10px;        /* Pegado a la DERECHA */
+    background: #25d366;
+    color: white;
+    width: 55px;        /* Ancho fijo */
+    height: 55px;       /* Alto fijo */
+    border-radius: 50%; /* Completamente redondo */
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centra el ícono */
+    z-index: 10000;
+    font-size: 32px;    /* Ícono más grande */
+    transition: transform 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1); /* Efecto al pasar el mouse */
+}
+
+/* =========================================
+   10. EFECTOS TÁCTILES (MOBILE TOUCH)
+   ========================================= */
+
+/* Efecto al tocar tarjetas y botones */
+.product-card:active, 
+.pizza-card:active, 
+.mini-card:active, 
+.drink-item:active, 
+.reference-card:active,
+.size-btn:active,
+.flavor-tag:active {
+    transform: scale(0.97); /* Se encoge ligeramente */
+    
+    /* --- NUEVO: Borde y Fondo Amarillo --- */
+    background-color: #fffbe6; /* Fondo amarillo muy clarito para no opacar el texto */
+    border: 2px solid var(--amarillo) !important; /* Borde amarillo intenso */
+    
+    /* Ajustamos la sombra y la transición para que el color cambie suavemente */
+    box-shadow: 0 2px 5px rgba(255, 215, 0, 0.2) !important;
+    transition: all 0.1s ease-out; 
+}
+
+/* Efecto específico para el botón flotante de WhatsApp (se mantiene igual de bien) */
+.whatsapp-float:active {
+    transform: translateX(-50%) scale(0.90);
+    background-color: #1ebc57; 
+}
+
+/* Efecto para el botón de cerrar modal */
+.close-modal:active {
+    background-color: var(--amarillo); /* Ahora se pone amarillo al cerrar */
+    color: var(--negro);
+    transform: scale(0.90);
+    border-color: var(--negro);
 }
 
 /* Grillas secundarias */
