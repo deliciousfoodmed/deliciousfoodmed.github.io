@@ -13,18 +13,23 @@
 </head>
 <body>
     <header class="hero-fullscreen">
+        <header class="hero-fullscreen">
+        <div class="hero-bg"></div>
+        
         <div class="overlay-dark"></div>
         
         <div class="hero-content">
-            <img src="./img/logo.jpg" alt="Logo Delicious Food" class="big-logo animate-pop">
-            <h1 class="brand-title">DELICIOUS <span class="yellow-text">FOOD</span></h1>
+            <div class="logo-wrapper">
+                <img src="./img/logo.jpg" alt="Logo Delicious Food" class="big-logo">
+            </div>
+            <h1 class="brand-title">DELICIOUS <br><span class="yellow-text">FOOD</span></h1>
+            <p class="brand-subtitle">Sabor Urbano & Express</p>        
         </div>
-
-        <p class="brand-subtitle">Sabor Urbano & Express</p>        
 
         <a href="#menu-inicio" class="scroll-down-arrow">
             <i class="fas fa-chevron-down"></i>
         </a>
+    </header>
     </header>
 
     <nav class="app-nav" id="menu-inicio">
@@ -50,15 +55,6 @@
             <p class="cat-desc">Puedes adicionar papas a la francesa por solo:  <span class="price" style="font-size: 16px;">$7.000</span> </p></p>
 
             <article class="product-card">
-                <div class="photo-frame"><img src="img/burger_junior.jpeg" alt="Burger"></div>
-                <div class="details">
-                    <h3>Burger Junior</h3>
-                    <p class="desc">Croqueta de Carne de 80gr, Queso mozarella, Jamón, Ripio, Lechuga, Tomate y Salsas de la casa</p>
-                    <span class="price">$18.000</span>
-                </div>
-            </article>
-
-            <article class="product-card">
                 <div class="photo-frame"><img src="img/burger_carne.jpeg" alt="Burger"></div>
                 <div class="details">
                     <h3>Burger de Carne</h3>
@@ -77,11 +73,21 @@
             </article>
 
             <article class="product-card">
-                <div class="photo-frame"><img src="img/burger_mexicana.jpeg" alt="Burger"></div>
+                <div class="photo-frame"><img src="img/burger_doble_delicious.jpeg" alt="Burger"></div>
                 <div class="details">
-                    <h3>Burger Mexicana</h3>
-                    <p class="desc">Carne de Croqueta, Picante, Jalapeño y aguacate.</p>
-                    <span class="price">$26.000</span>
+                    <h3>Burger Doble Delicious</h3>
+                    <p class="desc"><strong>¡Son 2 hamburguesas en 1!</strong> Doble Hamburguesa de Croqueta de Carne en Dos Pisos de Pan.</p>                    <span class="price">$43.500</span>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <div class="photo-frame"><img src="img/burger_delicious.jpeg" alt="Burger"></div>
+                <div class="details">
+                    <h3>Burger Delicious Food</h3>
+                    <p class="desc">
+                        <strong style="color: #E63946; font-size: 12px;">★ 4 PROTEÍNAS EN 1 ★</strong><br>
+                        La Bestia: Contiene Croqueta de Carne, Filete de Pollo, Carne Mechada y Chuleta Ahumada.
+                    </p>                    <span class="price">$52.000</span>
                 </div>
             </article>
 
@@ -131,21 +137,11 @@
             </article>
 
             <article class="product-card">
-                <div class="photo-frame"><img src="img/burger_doble_delicious.jpeg" alt="Burger"></div>
+                <div class="photo-frame"><img src="img/burger_mexicana.jpeg" alt="Burger"></div>
                 <div class="details">
-                    <h3>Burger Doble Delicious</h3>
-                    <p class="desc"><strong>¡Son 2 hamburguesas en 1!</strong> Doble Hamburguesa de Croqueta de Carne en Dos Pisos de Pan.</p>                    <span class="price">$43.500</span>
-                </div>
-            </article>
-
-            <article class="product-card">
-                <div class="photo-frame"><img src="img/burger_delicious.jpeg" alt="Burger"></div>
-                <div class="details">
-                    <h3>Burger Delicious Food</h3>
-                    <p class="desc">
-                        <strong style="color: #E63946;">★ 4 PROTEÍNAS EN 1 ★</strong><br>
-                        La Bestia: Contiene Croqueta de Carne, Filete de Pollo, Carne Mechada y Chuleta Ahumada.
-                    </p>                    <span class="price">$52.000</span>
+                    <h3>Burger Mexicana</h3>
+                    <p class="desc">Carne de Croqueta, Picante, Jalapeño y aguacate.</p>
+                    <span class="price">$26.000</span>
                 </div>
             </article>
 
@@ -164,6 +160,15 @@
                     <h3>Mini Burgers (x2)</h3>
                     <p class="desc">2 Mini burgers (carne 80gr, queso o huevo), papas y salsas.</p>
                     <span class="price">$23.000</span>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <div class="photo-frame"><img src="img/burger_junior.jpeg" alt="Burger"></div>
+                <div class="details">
+                    <h3>Burger Junior</h3>
+                    <p class="desc">Croqueta de Carne de 80gr, Queso mozarella, Jamón, Ripio, Lechuga, Tomate y Salsas de la casa</p>
+                    <span class="price">$18.000</span>
                 </div>
             </article>
         </section>
@@ -359,7 +364,7 @@
             <p class="cat-desc">Compuesto por 450gr de Papas a la Francesa, 2 Salchichas de muy buena calidad, 2 huevos de codorniz, Queso Mozzarella rallado sobre una cama de Lechuga finamente cortada y 2 rodajas de tomate. ¡Las salsas las eliges tú!</p>
 
             <article class="product-card">
-                <div class="photo-frame"><img src="img/salchi_mini.jpg" alt="Salchipapa"></div>
+                <div class="photo-frame"><img src="img/salchi_mini.jpeg" alt="Salchipapa"></div>
                 <div class="details">
                     <h3>Mini Salchipapas</h3>
                     <p class="desc">Contiene 250gr de Papas a la Francesa, 1 Salchicha de muy buena calidad, 1 huevo de codorniz y Queso Mozzarella Rallado.</p>
@@ -371,7 +376,7 @@
                 <div class="photo-frame"><img src="img/salchi_sencilla.jpeg" alt="Salchipapa"></div>
                 <div class="details">
                     <h3>Salchipapa Clásico</h3>
-                    <p class="desc">Papas, salchicha ahumada, queso, huevo codorniz.</p>
+                    <p class="desc">Papas, salchicha ahumada, queso, huevo codorniz, cebolla caramelizada.</p>
                     <span class="price">$23.500</span>
                 </div>
             </article>
